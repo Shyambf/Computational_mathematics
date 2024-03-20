@@ -246,13 +246,12 @@ void ImplictEulerMethod(double (*f[])(double*, double), double y[], double start
 }
 
 
-
 int main() {
 
     const int n = 2;
     int count_func = 5;
     double y[n] = { 1.0, 3.0 };
-    double t0 = 0.0, tmax = 10.0, tau = 0.001;
+    double t0 = 0.0, tmax = 1000.0, tau = 0.001;
     double y_temp[n];
     double (*f[n])(double*, double) = { F1, F2 };
 
