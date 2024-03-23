@@ -1,28 +1,7 @@
-#include <fstream>
-#include <iostream>
-#include <cstring>
-#include <cmath>
-#include <omp.h>
-#include <complex>
+п»ї#include "t2.h"
+
 
 using namespace std;
-
-double F1(double* y, double t)
-{
-	return 2 * (y[0] - y[0] * y[1]);
-}
-
-double F2(double* y, double t)
-{
-	return -(y[1] - y[0] * y[1]);
-}
-
-const int n = 2;
-double (*p[n])(double*, double) = { F1, F2 };
-const double tMax = 3.0;
-double y[n] = { 1.0, 3.0 };
-const double tau = 0.01;
-const double t0 = 0.0;
 
 int CreateRealFiles(int matrixSizes[], int n)
 {
@@ -35,14 +14,14 @@ int CreateRealFiles(int matrixSizes[], int n)
 	for (int k = 0; k < n; k++)
 	{
 		int N = matrixSizes[k];
-		sprintf_s(filenameA, "matrixA%d.txt", N);
-		sprintf_s(filenameB, "matrixB%d.txt", N);
+		sprintf_s(filenameA, "txt/matrixA%d.txt", N);
+		sprintf_s(filenameB, "txt/matrixB%d.txt", N);
 		ofstream matrixA(filenameA);
 		ofstream matrixB(filenameB);
 
 		if (!matrixA.is_open() || !matrixB.is_open())
 		{
-			cout << "Ошибка записи в файл!" << endl;
+			cout << "Error!" << endl;
 			return 1;
 		}
 
@@ -84,14 +63,14 @@ int CreateComplexFiles(int matrixSizes[], int n)
 	for (int k = 0; k < n; k++)
 	{
 		int N = matrixSizes[k];
-		sprintf_s(filenameA, "matrixAC%d.txt", N);
-		sprintf_s(filenameB, "matrixBC%d.txt", N);
+		sprintf_s(filenameA, "txt/matrixAC%d.txt", N);
+		sprintf_s(filenameB, "txt/matrixBC%d.txt", N);
 		ofstream matrixA(filenameA);
 		ofstream matrixB(filenameB);
 
 		if (!matrixA.is_open() || !matrixB.is_open())
 		{
-			cout << "Ошибка записи в файл!" << endl;
+			cout << "Error!" << endl;
 			return 1;
 		}
 
@@ -142,16 +121,16 @@ int YakobiR(int n)
 	char filenameB[256];
 	char filenameX[256];
 
-	sprintf_s(filenameA, "matrixA%d.txt", N);
-	sprintf_s(filenameB, "matrixB%d.txt", N);
-	sprintf_s(filenameX, "matrixYakobiX%d.txt", N);
+	sprintf_s(filenameA, "txt/matrixA%d.txt", N);
+	sprintf_s(filenameB, "txt/matrixB%d.txt", N);
+	sprintf_s(filenameX, "txt/matrixYakobiX%d.txt", N);
 	ifstream matrA(filenameA);
 	ifstream matrB(filenameB);
 	ofstream matrX(filenameX);
 
 	if (!matrA.is_open() || !matrB.is_open() || !matrX.is_open())
 	{
-		cout << "Ошибка открытия файла" << endl;
+		cout << "error" << endl;
 		return 1;
 	}
 
@@ -237,16 +216,16 @@ int YakobiC(int n)
 	char filenameB[256];
 	char filenameX[256];
 
-	sprintf_s(filenameA, "matrixAC%d.txt", N);
-	sprintf_s(filenameB, "matrixBC%d.txt", N);
-	sprintf_s(filenameX, "matrixYakobiXC%d.txt", N);
+	sprintf_s(filenameA, "txt/matrixAC%d.txt", N);
+	sprintf_s(filenameB, "txt/matrixBC%d.txt", N);
+	sprintf_s(filenameX, "txt/matrixYakobiXC%d.txt", N);
 	ifstream matrA(filenameA);
 	ifstream matrB(filenameB);
 	ofstream matrX(filenameX);
 
 	if (!matrA.is_open() || !matrB.is_open() || !matrX.is_open())
 	{
-		cout << "Ошибка открытия файла" << endl;
+		cout << "Error" << endl;
 		return 1;
 	}
 

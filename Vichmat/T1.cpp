@@ -1,19 +1,4 @@
-﻿#include <iostream>
-#include <omp.h>
-#include <string.h>
-
-using namespace std;
-
-double F1(double* y, double t)
-{
-    return 2.0 * (y[0] - y[0] * y[1]);
-}
-
-double F2(double* y, double t)
-{
-    return -(y[1] - y[0] * y[1]);
-}
-
+﻿#include "t1.h"
 
 void print_array(double array[], int n, FILE *file) {
     for (int i = 0; i < n; i++) {
@@ -243,55 +228,4 @@ void ImplictEulerMethod(double (*f[])(double*, double), double y[], double start
     delete[] opredn;
     delete[] b;
     delete[] p;
-}
-
-
-int main() {
-
-    const int n = 2;
-    int count_func = 5;
-    double y[n] = { 1.0, 3.0 };
-    double t0 = 0.0, tmax = 1000.0, tau = 0.001;
-    double y_temp[n];
-    double (*f[n])(double*, double) = { F1, F2 };
-
-    FILE* file = nullptr;
-
-
-    fopen_s(&file, "output0.txt", "w");
-    memcpy(&y_temp, &y, sizeof(y)); 
-    eiler(f, y_temp, t0, tmax, tau, n, file);
-    fclose(file);
-
-
-    fopen_s(&file, "output1.txt", "w");
-    memcpy(&y_temp, &y, sizeof(y));
-    runge_kutta_2nd(f, y_temp, t0, tmax, tau, n, file);
-    fclose(file);
-
-
-    fopen_s(&file, "output2.txt", "w");
-    memcpy(&y_temp, &y, sizeof(y));
-    predictor_corrector(f, y_temp, t0, tmax, tau, n, file);
-    fclose(file);
-
-    fopen_s(&file, "output3.txt", "w");
-    memcpy(&y_temp, &y, sizeof(y));
-    runge_kutta_4nd(f, y_temp, t0, tmax, tau, n, file);
-    fclose(file);
-
-    fopen_s(&file, "output4.txt", "w");
-    memcpy(&y_temp, &y, sizeof(y));
-    ImplictEulerMethod(f, y_temp, t0, tmax, tau, n, file);
-    fclose(file);
-    rewind(stdin);
-    printf("Show graph? [Y/N] - ");
-    char Ans_User;
-    Ans_User = getchar();
-    if (Ans_User == 'Y') {
-        char command[50];
-        sprintf_s(command, "python plot.py %d %f %lf", count_func, tmax, tau);
-        system(command);
-    }
-    return 0;
 }

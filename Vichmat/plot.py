@@ -8,7 +8,7 @@ tau = float(sys.argv[3])
 x = np.arange(0, t_max,  tau)
 try:
     for i in range(m):
-        with open(f'./output{i}.txt', 'r') as file:
+        with open(f'./txt/output{i}.txt', 'r') as file:
             func1 = list()
             func2 = list()
             for line in file:
@@ -20,7 +20,7 @@ try:
 except BaseException:
     x = np.arange(0, t_max + tau, tau)
     for i in range(m):
-        with open(f'./output{i}.txt', 'r') as file:
+        with open(f'./txt/output{i}.txt', 'r') as file:
             func1 = list()
             func2 = list()
             for line in file:
