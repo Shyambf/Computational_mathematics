@@ -7,7 +7,6 @@ void print_array(double array[], int n, FILE *file) {
     fprintf(file, "\n");
 }
 
-
 int eiler(double (*f[])(double*, double), double y[], double star_time, double end_time, double tau, int n, FILE *file) {
     double* yy = new double[n] {0.0};
     double start = omp_get_wtime();
@@ -25,7 +24,6 @@ int eiler(double (*f[])(double*, double), double y[], double star_time, double e
     delete[] yy;
     return 0;
 }
-
 
 int runge_kutta_2nd(double (*f[])(double*, double), double y[], double star_time, double end_time, double tau, int n, FILE *file) {
     double* yy = new double[n] {0.0};
@@ -90,7 +88,6 @@ int predictor_corrector(double (*f[])(double*, double), double y[], double star_
     delete[] ff;
     return 1;
 }
-
 
 int runge_kutta_4nd(double (*f[])(double*, double), double y[], double star_time, double end_time, double tau, int n, FILE* file) {
     const int m = 4;
@@ -159,7 +156,6 @@ int runge_kutta_4nd(double (*f[])(double*, double), double y[], double star_time
     return 1;
 
 }
-
 
 void ImplictEulerMethod(double (*f[])(double*, double), double y[], double start_time, double end_time, double tau, int n, FILE* file)
 {

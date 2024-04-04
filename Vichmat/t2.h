@@ -5,10 +5,12 @@
 #include <omp.h>
 #include <complex>
 
-int CreateRealFiles(int matrixSizes[], int n);
+void CreateRealFiles(int matrixSizes[], int n);
+void CreateComplexFiles(int matrixSizes[], int n);
+void YakobiR(int n);
+void YakobiC(int n);
+void GausZeyd(int n);
+void GausZeydC(int n);
+void Gaus(int n);
+void GausC(int n);
 
-int CreateComplexFiles(int matrixSizes[], int n);
-
-int YakobiR(int n);
-
-int YakobiC(int n);
