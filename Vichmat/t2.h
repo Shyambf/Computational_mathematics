@@ -13,4 +13,3 @@ void GausZeyd(int n);
 void GausZeydC(int n);
 void Gaus(int n);
 void GausC(int n);
-

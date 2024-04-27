@@ -514,7 +514,7 @@ void Gaus(int n)
 			matrA >> matrixA[i][j];
 		}
 		matrB >> matrixB[i];
-		matrixX[i] = 1.0;
+		//matrixX[i] = 1.0;
 	}
 
 	tn = omp_get_wtime();
@@ -534,10 +534,10 @@ void Gaus(int n)
 	for (int i = N - 1; i >= 0; i--)
 	{
 		sum = 0.0;
-		for (int j = i; j <= N - 1; j++)
+		for (int j = i + 1; j < N; j++)
 		{
-			if (i != NULL)
-				sum = sum + matrixA[i][j + 1] * matrixX[j + 1];
+			//if (i != NULL)
+				sum = sum + matrixA[i][j] * matrixX[j];
 		}
 		matrixX[i] = (matrixB[i] - sum) / matrixA[i][i];
 	}

@@ -1,3 +1,7 @@
 x64/
 *.txt
 .vs
+test.docx
+test/
+MATAN/
+docx.docx
