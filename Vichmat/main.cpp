@@ -1,5 +1,6 @@
 #include "t1.h"
 #include "t2.h"
+#include "t3.h"
 #include <cstdlib>
 #include <iostream>
 #include <vector>
@@ -18,6 +19,12 @@ double F21(double* y, double t)
 {
 	return -(y[1] - y[0] * y[1]);
 }
+
+double Celevaya_func(double x1, double x2)
+{
+	return 2.2 * x1 + -1.3 * x2 + exp(0.04 * x1 * x1 + 0.12 * x2 * x2);
+}
+
 void readLinesFromFile(const string& filename, vector<string>& lines, int start, int size) {
 	ifstream file(filename);
 	if (!file.is_open()) {
@@ -241,7 +248,8 @@ int main() {
 		printf("3 - Запустить методы\n");
 		printf("4 - Сравнить\n");
 		printf("5 - Тема 1\n");
-		printf("6 - Выход.\n");
+		printf("6 - Тема 3\n");
+		printf("7 - Выход\n");
 		mode = getchar();
 		switch (mode)
 		{
@@ -265,13 +273,21 @@ int main() {
 			print_data();
 			system("pause");
 			break;
-		case '5':
-			system("cls");
-			theme1();
+		case '6':
+			std::cout << "Answer CoordinatedDescent: " << "\n";
+			CoordinatedDescent(Celevaya_func, -5.0, 5.0, -5.0, 5.0, 0, 0, 0.000001, 0.0001);
+			std::cout << "\n\n" << "Answer Scanirovanie: " << "\n";
+			Scanirovanie(Celevaya_func, -5.0, 5.0, -5.0, 5.0, 0, 0, 0.1, 0.001);
+			std::cout << "\n\n" << "Answer Gradient: " << "\n";
+			Gradient(Celevaya_func, 5.0, 5.0, 0.00001, 0.000001);
 			system("pause");
+
+			break;
+		case '7':
 			break;
 		}
-	} while (mode != '6');
+
+	} while (mode != '7');
 	return 0;
 
 }

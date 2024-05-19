@@ -130,6 +130,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="t2.cpp" />
     <ClCompile Include="t1.cpp" />
+    <ClCompile Include="t3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="plot.py" />
@@ -137,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="t1.h" />
     <ClInclude Include="t2.h" />
+    <ClInclude Include="t3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
